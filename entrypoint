@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [ "${1:0:1}" = '-' ]; then
+	set -- docker-compose "$@"
+fi
+
+case "$1" in
+	build|bundle|config|create|down|events|exec|help|images|kill|logs|pause|port|ps|pull|push|restart|rm|run|scale|start|stop|top|unpause|up|version)
+		set -- docker-compose "$@"
+	;;
+esac
+
+exec "$@"
